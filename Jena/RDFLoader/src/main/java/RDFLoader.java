@@ -9,7 +9,7 @@ import org.apache.jena.riot.system.StreamRDF;
 import org.json.*;
 
 import java.io.*;
-import java.nio.file.Files;
+import java.nio.file.Files;gzip
 import java.nio.file.Path;
 import java.util.EmptyStackException;
 import java.util.Stack;
@@ -154,18 +154,18 @@ public class RDFLoader extends Thread {
                        var graph = v.getString("graph");
                        var clear_graph = v.getBoolean("clear_graph");
 
-                       boolean gziped = false;
+                       boolean gzipped = false;
                        String s = fname.toLowerCase();
 
                        if (s.endsWith(".gz") || s.endsWith(".z"))
-                         gziped = true;
+                         gzipped = true;
                          
-                       gziped = getJSONBool(v, "gziped", gziped);
+                       gzipped = getJSONBool(v, "gzipped", gzipped);
 
                        Lang lang = getLang(ftype);
                        if (lang == null)
                            log("Error unsupported file type: "+ftype);
-                       files.push(new TaskItem(fname, lang, graph, clear_graph, gziped));
+                       files.push(new TaskItem(fname, lang, graph, clear_graph, gzipped));
                    }
                }
            }
@@ -282,7 +282,7 @@ public class RDFLoader extends Thread {
                 InputStream in = null;
 
                 try {
-                  if (work.gziped)
+                  if (work.gzipped)
                     in = new GZIPInputStream(new FileInputStream(fpath));
                   else
                     in = new FileInputStream(fpath);
@@ -320,15 +320,15 @@ public class RDFLoader extends Thread {
         final Lang ftype;
         final String graph;
         final boolean clear_graph;
-        final boolean gziped;
+        final boolean gzipped;
 
-        TaskItem(String fname, Lang ftype, String graph, boolean clear_graph, boolean gziped)
+        TaskItem(String fname, Lang ftype, String graph, boolean clear_graph, boolean gzipped)
         {
             this.fname = fname;
             this.ftype = ftype;
             this.graph = graph;
             this.clear_graph = clear_graph;
-            this.gziped = gziped;
+            this.gzipped = gzipped;
         }
     }
 
