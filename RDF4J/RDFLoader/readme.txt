@@ -34,10 +34,10 @@
 
        - "file" : file name, including its path
 
-       - "type" : content-type, which may be any of: 
-                  "RDF/XML" | "TURTLE" | "TTL" | "N3" | "NTRIPLES" | "JSON-LD"
-                  | "JSON-LD10" | "JSON-LD11" | "RDF/JSON" | "TRIG" | "NQUADS"
-                  | "RDF-PROTO" | "RDF-THRIFT" | "SHACLC" | "TRIX"
+       - "type" : content-type, which may be any of:
+                  "RDF/XML" | "TURTLE" | "TTL" | "N3" | "NTRIPLES" | "JSON-LD" 
+                  | "RDF/JSON" | "TRIG" | "NQUADS" | "HDT" | "NDJSON-LD" | "RDFA" 
+                  | "TRIG-START" | "TURTLE-STAR"
 
        - "graph": (OPTIONAL) IRI of named graph to be loaded with data. May be left 
                   empty if the source data comprises quads.
