@@ -9,7 +9,7 @@ import org.apache.jena.riot.system.StreamRDF;
 import org.json.*;
 
 import java.io.*;
-import java.nio.file.Files;gzip
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.EmptyStackException;
 import java.util.Stack;
