@@ -158,18 +158,18 @@ public class RDFLoader extends Thread {
                        String graph = v.getString("graph");
                        boolean clear_graph = getJSONBool(v, "clear_graph", false);
 
-                       boolean gziped = false;
+                       boolean gzipped = false;
                        String s = fname.toLowerCase();
 
                        if (s.endsWith(".gz") || s.endsWith(".z"))
-                         gziped = true;
+                         gzipped = true;
                          
-                       gziped = getJSONBool(v, "gziped", gziped);
+                       gzipped = getJSONBool(v, "gzipped", gzipped);
 
                        RDFFormat format = getFormat(ftype);
                        if (format == null)
                            log("Error unsupported file type: "+ftype);
-                       files.push(new TaskItem(fname, format, graph, clear_graph, gziped));
+                       files.push(new TaskItem(fname, format, graph, clear_graph, gzipped));
                    }
                }
            }
@@ -287,7 +287,7 @@ public class RDFLoader extends Thread {
 
                 log("==[" + Thread.currentThread().getName() + "] Start load data = " + fpath);
 
-                if (work.gziped)
+                if (work.gzipped)
                   try (InputStream in = new GZIPInputStream(new FileInputStream(fpath))) {
                       conn.add(in, "myfile", work.ftype, batch_size, useAutoCommit, new MyDeadLockHandler(0), context);
                   }
@@ -317,15 +317,15 @@ public class RDFLoader extends Thread {
         final RDFFormat ftype;
         final String graph;
         final boolean clear_graph;
-        final boolean gziped;
+        final boolean gzipped;
 
-        TaskItem(String fname, RDFFormat ftype, String graph, boolean clear_graph, boolean gziped)
+        TaskItem(String fname, RDFFormat ftype, String graph, boolean clear_graph, boolean gzipped)
         {
             this.fname = fname;
             this.ftype = ftype;
             this.graph = graph;
             this.clear_graph = clear_graph;
-            this.gziped = gziped;
+            this.gzipped = gzipped;
         }
     }
 
